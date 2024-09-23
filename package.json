@@ -1,0 +1,15 @@
+{
+  "name": "graphir-toolchain",
+  "version": "1.0.0",
+  "description": "This repository contains the source code for managing the GraphIR toolchain, which is a set of tools for the extraction, analysis and transformation of GraphIR. GraphIR is a graph-based, single static assignment (SSA) intermediate representation (IR) for analysis and optimization of gradually typed languages.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc -w",
+    "start": "node build/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
