@@ -1,3 +1,6 @@
 [submodule "submodules/GraphIR-Backend"]
 	path = submodules/GraphIR-Backend
 	url = https://github.com/AdiHarif/GraphIR-Backend
+[submodule "submodules/GraphIR-Extractor"]
+	path = submodules/GraphIR-Extractor
+	url = https://github.com/AdiHarif/GraphIR-Extractor
