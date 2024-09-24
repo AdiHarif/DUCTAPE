@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "preinstall": "git submodule update --init --recursive && pushd submodules/GraphIR-Backend && npm install && npm run build && popd",
     "build": "tsc",
     "build:watch": "tsc -w",
     "start": "node build/main.js",
