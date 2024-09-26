@@ -4,3 +4,6 @@
 [submodule "submodules/GraphIR-Extractor"]
 	path = submodules/GraphIR-Extractor
 	url = https://github.com/AdiHarif/GraphIR-Extractor
+[submodule "submodules/GraphIR-Static-Analysis"]
+	path = submodules/GraphIR-Static-Analysis
+	url = https://github.com/AdiHarif/GraphIR-Static-Analysis.git
