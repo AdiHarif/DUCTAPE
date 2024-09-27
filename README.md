@@ -9,3 +9,23 @@ This repository contains the source code for managing the GraphIR toolchain, whi
 - [TS-Graph-Extracor](https://github.com/AdiHarif/TS-Graph-Extractor) - Parses TS code into GraphIR objects. Essentially toolchain's frontend.
 - [GraphIR-Static-Analysis](https://github.com/AdiHarif/GraphIR-Static-Analysis) - Inference and reasoning over GraphIR, implemented in Souffle Datalog.
 - [GraphIR-Backend](https://github.com/AdiHarif/GraphIR-Backend) - Emit c++ code corresponding to GraphIR objects.
+
+
+## Installation and usage
+
+### Install
+After cloning the repository, run the following command to install the dependencies:
+```bash
+git submodule update --init --recursive
+npm i
+```
+
+### Build
+```bash
+npm run build
+```
+
+### Run
+```bash
+npm start -- -i <input-file> -o <output-file>
+```
