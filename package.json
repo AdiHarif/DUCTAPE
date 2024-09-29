@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "preinstall": "pushd submodules/GraphIR-Backend && npm install && npm run build && popd && pushd submodules/GraphIR-Extractor && npm install && npm run build && popd && pushd submodules/GraphIR-Static-Analysis && make functors && popd",
+    "preinstall": "pushd submodules/GraphIR-Static-Analysis && make functors",
     "build": "tsc",
     "build:watch": "tsc -w",
     "start": "node build/main.js",
