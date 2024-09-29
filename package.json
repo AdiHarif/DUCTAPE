@@ -15,8 +15,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "graphir-compiler": "file:submodules/GraphIR-Backend",
-    "ts-graph-extractor": "file:submodules/GraphIR-Extractor",
+    "graphir-compiler": "github:AdiHarif/GraphIR-Backend#dev",
+    "ts-graph-extractor": "github:AdiHarif/GraphIR-Extractor#dev",
     "yargs": "^17.7.2"
   },
   "devDependencies": {

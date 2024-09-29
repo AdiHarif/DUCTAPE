@@ -4,7 +4,7 @@ import { execSync } from 'child_process';
 
 
 import { exportIrToRelations } from "graphir";
-import { extractFromPath } from '../submodules/GraphIR-Backend/submodules/TS-Graph-Extractor/build/main.js';
+import { extractFromPath } from 'ts-graph-extractor';
 import { generateCpp } from 'graphir-compiler';
 
 import { getCliOptions } from "./options.js";
@@ -29,7 +29,7 @@ async function main() {
     const code = generateCpp(graph);
     fs.appendFileSync(cppFile, code);
 
-    execSync(`clang++ -std=c++17 -o ${options['output-file']} -Isubmodules/GraphIR-Backend/lib ${cppFile}`);
+    execSync(`clang++ -std=c++17 -o ${options['output-file']} -Inode_modules/graphir-compiler/lib ${cppFile}`);
 }
 
 main();
