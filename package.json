@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "preinstall": "pushd submodules/GraphIR-Static-Analysis && make functors",
+    "preinstall": "cd submodules/GraphIR-Static-Analysis && make functors",
     "build": "tsc",
     "build:watch": "tsc -w",
     "start": "node build/main.js",
