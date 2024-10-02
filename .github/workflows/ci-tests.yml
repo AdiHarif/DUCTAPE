@@ -1,0 +1,29 @@
+name: Run All Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu
+    container: adiharif/graphir-dep
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Git Dependencies
+        run: git submodule update --init --recursive
+
+      - name: Install NPM Packages
+        run: npm ci
+
+      - name: Build Project
+        run: npm run build
+
+      - name: Run Tests
+        run: npm test
