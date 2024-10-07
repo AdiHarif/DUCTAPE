@@ -5,4 +5,13 @@ export default {
     "^.+.tsx?$": ["ts-jest",{}],
   },
   testPathIgnorePatterns: ["/node_modules/", "/submodules/"],
+  reporters: [
+    "default",
+    [
+      "jest-html-reporters",
+      {
+        inlineSource: true,
+      }
+    ]
+  ]
 };

@@ -3,6 +3,8 @@ import fs from "fs"
 import path from "path"
 import { execSync } from "child_process"
 
+import { addMsg } from "jest-html-reporters/helper"
+
 beforeEach(() => {
     fs.rmSync("out", { recursive: true, force: true});
     fs.mkdirSync("out");
@@ -13,9 +15,19 @@ function compileAndRunFile(tsFile: string) {
     const outFile = 'out/a.out';
     execSync(`npm start -- -i ${tsFile} -o ${outFile}`);
 
-    const output = execSync(outFile).toString();
-    const expectedOutput = execSync(`npx tsx ${tsFile}`).toString();
+    const nativeStart = process.hrtime();
+    const outputBuffer = execSync(outFile);
+    const nativeEnd = process.hrtime(nativeStart);
+    const nativeTime = nativeEnd[0] + nativeEnd[1] / 1e9;
+    const output = outputBuffer.toString();
+
+    const tsStart = process.hrtime();
+    const expectedOutputBuffer = execSync(`npx tsx ${tsFile}`);
+    const tsEnd = process.hrtime(tsStart);
+    const tsTime = tsEnd[0] + tsEnd[1] / 1e9;
+    const expectedOutput = expectedOutputBuffer.toString();
     expect(output).toEqual(expectedOutput);
+    addMsg({ message: `${tsFile}: ${tsTime}s (TS) vs ${nativeTime}s (native)` });
 }
 
 
