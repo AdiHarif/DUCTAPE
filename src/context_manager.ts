@@ -15,6 +15,9 @@ class CppContextManager {
     ];
 
     public registerType(type: ir.Type): void {
+        if (type instanceof ir.IntegerType) {
+            this.stdLibIncludes.add("cstdint");
+        }
         if (type instanceof ir.StaticArrayType || type instanceof ir.DynamicArrayType) {
             this.stdLibIncludes.add("memory");
         }
