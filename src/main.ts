@@ -29,7 +29,7 @@ async function main() {
     const code = generateCpp(graph);
     fs.appendFileSync(cppFile, code);
 
-    execSync(`clang++ -std=c++17 -o ${options['output-file']} -Inode_modules/graphir-compiler/lib ${cppFile}`);
+    execSync(`clang++ -O3 -std=c++17 -o ${options['output-file']} -Inode_modules/graphir-compiler/lib ${cppFile}`);
 }
 
 main();
