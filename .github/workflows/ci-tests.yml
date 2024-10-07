@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     container: adiharif/graphir-dep
 
@@ -27,3 +27,9 @@ jobs:
 
       - name: Run Tests
         run: npm test
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: tests-report
+          path: ./jest_html_reporters.html
