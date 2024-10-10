@@ -21,8 +21,10 @@ function compileAndRunFile(tsFile: string) {
     const nativeTime = nativeEnd[0] + nativeEnd[1] / 1e9;
     const output = outputBuffer.toString();
 
+
+    execSync(`tsc --outfile tmp.js --skipLibCheck ${tsFile}`);
     const tsStart = process.hrtime();
-    const expectedOutputBuffer = execSync(`npx tsx ${tsFile}`);
+    const expectedOutputBuffer = execSync(`node tmp.js`);
     const tsEnd = process.hrtime(tsStart);
     const tsTime = tsEnd[0] + tsEnd[1] / 1e9;
     const expectedOutput = expectedOutputBuffer.toString();
