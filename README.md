@@ -1,6 +1,11 @@
 
 # GraphIR-Toolchain
 
+
+<p align="center">
+    <img src="images/ductape_logo.png" width="50%"/>
+</p>
+
 <p align="center">
     <a href="https://github.com/AdiHarif/GraphIR-Toolchain/actions/">
         <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/AdiHarif/GraphIR-Toolchain/ci-tests.yml?style=flat-square&label=CI%3A%20main&link=https%3A%2F%2Fgithub.com%2FAdiHarif%2FGraphIR-Toolchain%2Factions%2F">
