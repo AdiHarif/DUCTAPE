@@ -2,7 +2,7 @@
 FROM node:22
 
 RUN apt update && apt upgrade -y
-RUN apt install -y python3 clang flex bison cmake sqlite3
+RUN apt install -y python3 pip clang flex bison cmake sqlite3
 
 RUN git clone https://github.com/souffle-lang/souffle && \
     cd souffle && \
