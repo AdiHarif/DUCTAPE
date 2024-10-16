@@ -10,6 +10,7 @@
     "build:watch": "tsc -w",
     "start": "node build/main.js",
     "test": "jest",
+    "test:benchmark": "jest && python3 scripts/benchmarks.py benchmarks.csv benchmarks_chart.png",
     "prepare": "npm run build"
   },
   "author": "",
