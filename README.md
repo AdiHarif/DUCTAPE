@@ -1,5 +1,5 @@
 
-# GraphIR-Toolchain
+# DUCTAPE
 
 
 <p align="center">
@@ -15,8 +15,9 @@
     </a>
 </p>
 
+**DUCTAPE** - Dynamic execution Using gradual Compilation Techniques and static Analysis for Program Enhancements.
 
-This repository contains the source code for managing the GraphIR toolchain, which is a set of tools for the extraction, analysis and transformation of GraphIR. GraphIR is a graph-based, single static assignment (SSA) intermediate representation (IR) for analysis and optimization of gradually typed languages.
+DUCTAPE is a set of tools for the extraction, analysis and transformation of TypeScript programs using GraphIR. GraphIR is a graph-based, single static assignment (SSA) intermediate representation (IR) for analysis and optimization of gradually typed languages.
 
 ## GraphIR Related Repositories
 
