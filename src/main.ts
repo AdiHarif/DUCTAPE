@@ -11,7 +11,23 @@ import { getCliOptions } from "./options.js";
 import { generateContext } from './context_manager.js';
 import { hydrateTypesFromFiles } from './type_hydration.js';
 
+import { Graph } from 'graphir';
+
 const options = getCliOptions();
+
+function generatePartialCpp(graph: Graph) {
+    if (graph.jsDocTags['ductape'] === 'compile') {
+        return generateCpp(graph);
+    }
+    else {
+        let code = '';
+        for (let g of graph.subgraphs) {
+            code += generatePartialCpp(g);
+            code += '\n';
+        }
+        return code;
+    }
+}
 
 async function main() {
     const graph = extractFromPath(options['input-file']);
@@ -26,10 +42,18 @@ async function main() {
     const contextManager = generateContext(graph);
     contextManager.dump(cppFile);
 
-    const code = generateCpp(graph);
-    fs.appendFileSync(cppFile, code);
+    let code;
+    let clangFlags = `-O3 -std=c++17 -o ${options['output-file']} -Inode_modules/graphir-compiler/lib`;
+    if (options.compilationMode === 'gradual') {
+        code = generatePartialCpp(graph);
+        clangFlags += ' --shared';
+    }
+    else {
+        code = generateCpp(graph);
+    }
 
-    execSync(`clang++ -O3 -std=c++17 -o ${options['output-file']} -Inode_modules/graphir-compiler/lib ${cppFile}`);
+    fs.appendFileSync(cppFile, code);
+    execSync(`clang++ ${clangFlags} ${cppFile}`);
 }
 
 main();
