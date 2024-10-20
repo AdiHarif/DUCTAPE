@@ -34,7 +34,7 @@ jobs:
         run: npm test
 
       - name: Generate Benchmarks Column Chart
-        run: python3 scripts/benchmarks.py benchmarks.csv benchmarks_chart.png
+        run: python3 scripts/benchmarks.py -i benchmarks.csv -o benchmarks_chart.png
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4

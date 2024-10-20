@@ -2,14 +2,19 @@
 import sys
 
 import pandas as pd
+import argparse
 import matplotlib.pyplot as plt
 
-if len(sys.argv) != 3:
-    print('Usage: python3 benchmarks.py <input_csv> <output_image>')
-    sys.exit(1)
+# Set up argument parser
+parser = argparse.ArgumentParser(description='Generate a benchmark comparison chart.')
+parser.add_argument('-i', '--input_csv', type=str, help='Path to the input CSV file', required=True)
+parser.add_argument('-o', '--output_image', type=str, help='Path to save the output image', default='benchmark_chart.png')
+
+# Parse arguments
+args = parser.parse_args()
 
 # Load the data from the CSV file
-data = pd.read_csv(sys.argv[1])
+data = pd.read_csv(args.input_csv)
 
 # Assuming the CSV has columns 'Benchmark' and 'Score'
 benchmarks = data['file']
@@ -32,4 +37,4 @@ plt.legend()
 plt.tight_layout()
 
 # Save the plot as an image file
-plt.savefig(sys.argv[2])
+plt.savefig(args.output_image)
