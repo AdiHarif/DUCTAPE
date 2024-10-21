@@ -8,8 +8,9 @@ import matplotlib.pyplot as plt
 # Set up argument parser
 parser = argparse.ArgumentParser(description='Generate a benchmark comparison chart.')
 parser.add_argument('-i', '--input_csv', type=str, help='Path to the input CSV file', required=True)
-parser.add_argument('-o', '--output_image', type=str, help='Path to save the output image', default='benchmark_chart.png')
+parser.add_argument('-o', '--output_image', type=str, help='Path to save the output image')
 parser.add_argument('--prev', type=str, help='Path to the previous benchmark CSV file')
+parser.add_argument('--show', action='store_true', help='Show the generated chart')
 
 # Parse arguments
 args = parser.parse_args()
@@ -52,4 +53,9 @@ plt.legend()
 plt.tight_layout()
 
 # Save the plot as an image file
-plt.savefig(args.output_image)
+if args.output_image:
+    plt.savefig(args.output_image)
+
+# Show the plot if the --show flag is set
+if args.show:
+    plt.show()
