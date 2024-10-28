@@ -46,7 +46,7 @@ async function main() {
     let clangFlags = `-O3 -std=c++17 -o ${options['output-file']} -Inode_modules/graphir-compiler/lib`;
     if (options.compilationMode === 'gradual') {
         code = generatePartialCpp(graph);
-        clangFlags += ' --shared';
+        clangFlags += ' --shared -fPIC';
     }
     else {
         code = generateCpp(graph);
