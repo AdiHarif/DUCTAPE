@@ -10,6 +10,7 @@ import { generateCpp } from 'graphir-compiler';
 import { getCliOptions } from "./options.js";
 import { generateContext } from './context_manager.js';
 import { hydrateTypesFromFiles } from './type_hydration.js';
+import { emitTransformedFile } from './ts_transformations.js';
 
 import { Graph } from 'graphir';
 
@@ -47,6 +48,9 @@ async function main() {
     if (options.compilationMode === 'gradual') {
         code = generatePartialCpp(graph);
         clangFlags += ' --shared -fPIC';
+
+        const functionTypeMap = getFunctionTypeMap(graph);
+        emitTransformedFile(options['input-file'], functionTypeMap);
     }
     else {
         code = generateCpp(graph);
