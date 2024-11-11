@@ -18,6 +18,13 @@ args = parser.parse_args()
 # Load the data from the CSV file
 data = pd.read_csv(args.input_csv)
 
+# Check data of previous run
+if args.prev:
+    prev_data = pd.read_csv(args.prev)
+    if len(data) != len(prev_data):
+        print('Warning: The number of benchmarks in the current and previous CSV files do not match.')
+        args.prev = False
+
 # Assuming the CSV has columns 'Benchmark' and 'Score'
 benchmarks = data['file']
 tsTimes = data['tsTime']
@@ -36,7 +43,6 @@ plt.bar([i + full_bar_width + current_offset for i in index], nativeTimes, bar_w
 
 # If previous benchmark file is provided, plot previous benchmark times
 if args.prev:
-    prev_data = pd.read_csv(args.prev)
     prev_tsTimes = prev_data['tsTime']
     prev_nativeTimes = prev_data['nativeTime']
 
