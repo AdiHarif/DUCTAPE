@@ -11,8 +11,19 @@ class CppContextManager {
 
     private static supportedExternalLibs = [
         'console',
-        'Math'
+        'Math',
+        'fs'
     ];
+
+    private static defaultExternalLibs = [
+        'global',
+    ];
+
+    constructor() {
+        for (const lib of CppContextManager.defaultExternalLibs) {
+            this.externalIncludes.add(lib);
+        }
+    }
 
     public registerType(type: ir.Type): void {
         if (type instanceof ir.IntegerType) {
