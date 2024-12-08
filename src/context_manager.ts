@@ -17,6 +17,7 @@ class CppContextManager {
 
     private static defaultExternalLibs = [
         'global',
+        'process',
     ];
 
     constructor() {
