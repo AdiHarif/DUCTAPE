@@ -10,6 +10,7 @@ import { generateCpp } from 'graphir-compiler';
 import { getCliOptions } from "./options.js";
 import { generateContext } from './context_manager.js';
 import { hydrateTypesFromFiles } from './type_hydration.js';
+import { transformGraph } from './transformation.js';
 
 const options = getCliOptions();
 
@@ -25,6 +26,8 @@ async function main() {
 
     const contextManager = generateContext(graph);
     contextManager.dump(cppFile);
+
+    transformGraph(graph, 'out/graph_transformation.csv');
 
     const code = generateCpp(graph);
     fs.appendFileSync(cppFile, code);
