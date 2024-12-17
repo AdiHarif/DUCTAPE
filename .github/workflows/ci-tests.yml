@@ -31,7 +31,7 @@ jobs:
         run: npm run build
 
       - name: Run Tests
-        run: npm test
+        run: npm test -- --runInBand
 
       - name: Fetch Previous Benchmark Results
         uses: dawidd6/action-download-artifact@v6
@@ -57,3 +57,4 @@ jobs:
             jest_html_reporters.html
             benchmarks.csv
             benchmarks_chart.png
+            sudoku_benchmark.csv
