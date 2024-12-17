@@ -57,4 +57,4 @@ jobs:
             jest_html_reporters.html
             benchmarks.csv
             benchmarks_chart.png
-            sudoku_benchmark.csv
+            sudoku_benchmarks.csv
