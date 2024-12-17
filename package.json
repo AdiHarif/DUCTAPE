@@ -9,7 +9,7 @@
     "build": "tsc",
     "build:watch": "tsc -w",
     "start": "node build/main.js",
-    "test": "jest",
+    "test": "jest --runInBand",
     "test:benchmark": "jest && python3 scripts/benchmarks.py -i benchmarks.csv --show",
     "prepare": "npm run build"
   },
