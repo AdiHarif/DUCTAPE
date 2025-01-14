@@ -15,7 +15,7 @@ const inputFile = "tests/sudoku_benchmarks/input-64.txt";
 
 afterAll(() => {
     const outpath = "sudoku_benchmarks.csv";
-    fs.writeFileSync(outpath, "File,Time(s)\n");
+    fs.writeFileSync(outpath, "File, TS Time(s), Native Time(s)\n");
     for (const file in results) {
         const [tsTime, nativeTime] = results[file];
         fs.appendFileSync(outpath, `${file},${tsTime},${nativeTime}\n`);
