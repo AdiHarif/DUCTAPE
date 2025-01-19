@@ -47,6 +47,16 @@ class StringSubstringTransformer implements GraphTransformer {
     }
 }
 
+class StringCharCodeAtTransformer implements GraphTransformer {
+    transform(graph: ir.Graph, vertex: ir.LoadVertex): void {
+        const objVertex = vertex.object!;
+        vertex.object = new ir.StaticSymbolVertex('String', undefined as any);
+        const call = vertex.next;
+        assert(call instanceof ir.CallVertex);
+        call.unshiftArg(objVertex);
+    }
+}
+
 type TransformationKind = string;
 
 function getTransformationsMap(transformationsFile: string): Map<number, TransformationKind> {
@@ -70,6 +80,10 @@ export function transformGraph(graph: ir.Graph, transformationsFile: string): vo
             else if (transformations.get(vertex.id) == 'string.length' || transformations.get(vertex.id) == 'Array.length') {
                 assert(vertex instanceof ir.LoadVertex);
                 transformer = new GetterToMethodTransformer('size')
+            }
+            else if (transformations.get(vertex.id) == 'string.charCodeAt') {
+                assert(vertex instanceof ir.LoadVertex);
+                transformer = new StringCharCodeAtTransformer();
             }
             else {
                 throw new Error(`Unknown transformation: ${transformations.get(vertex.id)}`);
