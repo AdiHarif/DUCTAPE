@@ -43,6 +43,10 @@ class CppContextManager {
         if (type instanceof ir.UnionType) {
             this.externalIncludes.add("union");
         }
+        if (type instanceof ir.StaticStringType) {
+            this.externalIncludes.add("String");
+            this.stdLibIncludes.add("string");
+        }
     }
 
     public registerStaticString(id: number, value: string): void {}
