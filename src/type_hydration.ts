@@ -85,6 +85,9 @@ function typeNameToType(typeName: string): ir.Type {
     else if (typeName.startsWith('Undefined')) {
         return new ir.UndefinedType();
     }
+    else if (typeName.startsWith('UserDefined')) {
+        return new ir.UserDefinedType(extractInnerTypeName(typeName));
+    }
     throw new Error(`Unsupported typename: ${typeName}`);
 }
 
