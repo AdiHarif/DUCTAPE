@@ -30,7 +30,7 @@ function splitTypeNamesList(typeNames: string): Array<string> {
     return typeNamesList;
 }
 
-function typeNameToType(typeName: string): ir.Type {
+export function typeNameToType(typeName: string): ir.Type {
     if (typeName == 'Number') {
         return new ir.NumberType();
     }
