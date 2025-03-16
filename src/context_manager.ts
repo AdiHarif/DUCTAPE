@@ -18,6 +18,8 @@ class CppContextManager {
     private static defaultExternalLibs = [
         'global',
         'process',
+        'Error',
+        'performance',
     ];
 
     constructor() {
@@ -46,6 +48,9 @@ class CppContextManager {
         if (type instanceof ir.StaticStringType) {
             this.externalIncludes.add("String");
             this.stdLibIncludes.add("string");
+        }
+        if (type instanceof ir.ObjectType) {
+            this.externalIncludes.add("Object");
         }
     }
 
