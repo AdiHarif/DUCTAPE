@@ -57,6 +57,16 @@ class StringCharCodeAtTransformer implements GraphTransformer {
     }
 }
 
+class StringIndexOfTransformer implements GraphTransformer {
+    transform(graph: ir.Graph, vertex: ir.LoadVertex): void {
+        const objVertex = vertex.object!;
+        vertex.object = new ir.StaticSymbolVertex('String', undefined as any);
+        const call = vertex.next;
+        assert(call instanceof ir.CallVertex);
+        call.unshiftArg(objVertex);
+    }
+}
+
 type TransformationKind = string;
 
 function getTransformationsMap(transformationsFile: string): Map<number, TransformationKind> {
@@ -84,6 +94,10 @@ export function transformGraph(graph: ir.Graph, transformationsFile: string): vo
             else if (transformations.get(vertex.id) == 'string.charCodeAt') {
                 assert(vertex instanceof ir.LoadVertex);
                 transformer = new StringCharCodeAtTransformer();
+            }
+            else if (transformations.get(vertex.id) == 'string.indexOf') {
+                assert(vertex instanceof ir.LoadVertex);
+                transformer = new StringIndexOfTransformer();
             }
             else {
                 throw new Error(`Unknown transformation: ${transformations.get(vertex.id)}`);
