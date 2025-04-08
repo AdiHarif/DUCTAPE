@@ -1,3 +1,6 @@
 [submodule "submodules/GraphIR-Static-Analysis"]
 	path = submodules/GraphIR-Static-Analysis
 	url = https://github.com/AdiHarif/GraphIR-Static-Analysis.git
+[submodule "submodules/TS-Ostrich"]
+	path = submodules/TS-Ostrich
+	url = https://github.com/AdiHarif/TS-Ostrich.git
